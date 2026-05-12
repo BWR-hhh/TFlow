@@ -45,17 +45,17 @@ corpus).
 To evaluate the released model on the five benchmarks, run:
 
 ```eval
-python main.py --method tflow --dataset gsm8k        --generate_bs 4
-python main.py --method tflow --dataset minerva_math --generate_bs 4
-python main.py --method tflow --dataset mmlu         --generate_bs 4
-python main.py --method tflow --dataset humaneval    --generate_bs 4
-python main.py --method tflow --dataset mbpp         --generate_bs 4
+python main.py --method tflow --dataset gsm8k
+python main.py --method tflow --dataset minerva_math 
+python main.py --method tflow --dataset mmlu       
+python main.py --method tflow --dataset humaneval   
+python main.py --method tflow --dataset mbpp      
 ```
 
 You can also run all five datasets through the convenience script:
 
 ```eval
-MAX_SAMPLES=-1 GENERATE_BS=4 bash scripts/run_eval.sh tflow
+MAX_SAMPLES=-1 GENERATE_BS=20 bash scripts/run_eval.sh tflow
 ```
 
 Without `MAX_SAMPLES=-1`, `scripts/run_eval.sh` defaults to a 50-sample
