@@ -1,15 +1,22 @@
-# TFlow: Good Agentic Friends Do Not Just Give Verbal Advice
+# TFlow: Weight-Space Communication for Multi-Agent LLMs
 
-This repository contains the canonical release code for
+This repository contains the official code release for
 **Good Agentic Friends Do Not Just Give Verbal Advice: They Can Update
 Your Weights**.
 
-TFlow (Thought Flow) evaluates weight-space inter-agent communication:
-a `ParameterGenerator` produces instance-conditioned LoRA updates that
-let one agent update another agent's weights during inference.
+TFlow (Thought Flow) is a weight-space communication framework for
+multi-agent LLMs. Instead of asking sender agents to write natural
+language messages into the receiver's context, TFlow compiles sender
+hidden states into transient, receiver-specific LoRA perturbations.
+These perturbations are fused and applied only during the receiver's
+generation, enabling instance-level adaptation without permanently
+changing the model weights or increasing the receiver's text context.
 
-> Paper link and BibTeX will be added after the public arXiv record is
-> available.
+With three frozen Qwen3-4B agents, TFlow improves over a standalone
+receiver by up to 8.5 accuracy points while reducing processed tokens by
+up to 32.69%. Compared with a text-based three-agent baseline, it reduces
+processed tokens by up to 83.27% and wall-clock inference time by up to
+4.6x, while maintaining competitive accuracy on four of five benchmarks.
 
 ## Requirements
 
@@ -104,20 +111,34 @@ You can download pretrained models here:
 
 ## Results
 
-Our model achieves the following performance on:
+Table 1 in the paper reports accuracy (Acc., %), average total processed
+tokens (Token), and end-to-end wall-clock inference time (Speed, seconds)
+across five benchmarks. `Single` is the standalone receiver, `TextMAS`
+is the text-channel multi-agent baseline, and `TFlow` is the proposed
+weight-space communication method.
 
-### Reasoning Evaluation Across Five Public Benchmarks
+| Task | Metric | Single | TextMAS | TFlow |
+| --- | --- | ---: | ---: | ---: |
+| MMLU-Redux | Acc. | 58.99 | 71.50 | 66.97 |
+| MMLU-Redux | Token | 1079 | 4825 | 998 |
+| MMLU-Redux | Speed | 8226 | 36450 | 9784 |
+| GSM8K | Acc. | 84.99 | 93.78 | 92.12 |
+| GSM8K | Token | 1337 | 5381 | 900 |
+| GSM8K | Speed | 6230 | 27256 | 5953 |
+| MATH | Acc. | 16.18 | 26.47 | 23.16 |
+| MATH | Token | 2782 | 8188 | 2242 |
+| MATH | Speed | 1984 | 5213 | 2258 |
+| MBPP+ | Acc. | 59.79 | 68.52 | 67.20 |
+| MBPP+ | Token | 1533 | 5500 | 1301 |
+| MBPP+ | Speed | 1998 | 5796 | 2395 |
+| HumanEval+ | Acc. | 56.71 | 75.00 | 65.24 |
+| HumanEval+ | Token | 1756 | 5879 | 1662 |
+| HumanEval+ | Speed | 872 | 2512 | 1065 |
 
-Accuracy (%) on the full test split of each benchmark, with the
-configuration shipped in this release (Qwen3-4B backbone,
-`do_sample=True`, `temperature=0.6`, `top_p=0.95`, seed 42); pass@1
-under the EvalPlus extended test harness for HumanEval+ / MBPP+.
-
-| Model name | GSM8K | MATH  | MMLU  | HumanEval+ | MBPP+ |
-| ---------- | :---: | :---: | :---: | :--------: | :---: |
-| baseline   | 84.99 | 16.18 | 58.99 | 56.71      | 59.79 |
-| textmas    | 93.78 | 26.47 | 71.50 | 75.00      | 68.52 |
-| **tflow**  | 92.12 | 23.16 | 66.97 | 65.24      | 67.20 |
+Overall, TFlow consistently outperforms the single-agent baseline while
+using fewer processed tokens. Against TextMAS, it cuts token consumption
+by 71-83% and provides 2.3-4.6x wall-clock speed-ups, with the largest
+accuracy gap appearing on HumanEval+.
 
 ## Contributing
 
@@ -132,6 +153,6 @@ the Apache License 2.0; see [`LICENSE`](LICENSE) for the license text.
   title  = {Good Agentic Friends Do Not Just Give Verbal Advice: They Can Update Your Weights},
   author = {TODO},
   year   = {2026},
-  note   = {BibTeX will be updated after the public arXiv record is available}
+  note   = {Preprint; BibTeX will be updated after the public arXiv record is available}
 }
 ```
