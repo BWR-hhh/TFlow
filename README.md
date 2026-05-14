@@ -1,8 +1,8 @@
 # TFlow: Weight-Space Communication for Multi-Agent LLMs
 
 This repository contains the official code release for
-**Good Agentic Friends Do Not Just Give Verbal Advice: They Can Update
-Your Weights**.
+**[Good Agentic Friends Do Not Just Give Verbal Advice: They Can Update
+Your Weights](https://arxiv.org/pdf/2605.13839)**.
 
 TFlow (Thought Flow) is a weight-space communication framework for
 multi-agent LLMs. Instead of asking sender agents to write natural
@@ -149,10 +149,13 @@ the Apache License 2.0; see [`LICENSE`](LICENSE) for the license text.
 ## Citation
 
 ```bibtex
-@misc{tflow2026,
-  title  = {Good Agentic Friends Do Not Just Give Verbal Advice: They Can Update Your Weights},
-  author = {TODO},
-  year   = {2026},
-  note   = {Preprint; BibTeX will be updated after the public arXiv record is available}
+@misc{tflow2026good,
+  title         = {Good Agentic Friends Do Not Just Give Verbal Advice: They Can Update Your Weights},
+  author        = {TODO},
+  year          = {2026},
+  eprint        = {2605.13839},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  url           = {https://arxiv.org/pdf/2605.13839}
 }
 ```
