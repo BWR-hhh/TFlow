@@ -149,13 +149,13 @@ the Apache License 2.0; see [`LICENSE`](LICENSE) for the license text.
 ## Citation
 
 ```bibtex
-@misc{tflow2026good,
-  title         = {Good Agentic Friends Do Not Just Give Verbal Advice: They Can Update Your Weights},
-  author        = {TODO},
-  year          = {2026},
-  eprint        = {2605.13839},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.AI},
-  url           = {https://arxiv.org/pdf/2605.13839}
+@misc{bao2026goodagenticfriendsjust,
+      title={Good Agentic Friends Do Not Just Give Verbal Advice: They Can Update Your Weights}, 
+      author={Wenrui Bao and Huan Wang and Jian Wang and Zhangyang Wang and Kai Wang and Yuzhang Shang},
+      year={2026},
+      eprint={2605.13839},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2605.13839}, 
 }
 ```
